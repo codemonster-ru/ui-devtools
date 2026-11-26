@@ -1,0 +1,64 @@
+name: Release Devtools Package From Tag
+
+on:
+  push:
+    tags:
+      - '@codemonster-ru/ui-*@*'
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: codemonster-ui-devtools-package-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+
+      - name: Resolve release target
+        id: target
+        run: |
+          node --input-type=module <<'NODE'
+          import { appendFileSync, readFileSync } from 'node:fs';
+          const manifest = JSON.parse(readFileSync('package.json', 'utf8'));
+          const packages = manifest.workspaces.map((path) => JSON.parse(readFileSync(`${path}/package.json`, 'utf8')));
+          const target = packages.find(({ name, version }) => process.env.GITHUB_REF_NAME === `${name}@${version}`);
+          if (!target || !/^\d+\.\d+\.\d+$/.test(target.version) || target.private) {
+            throw new Error('Release tag must match a publishable workspace and its stable version.');
+          }
+          const tarball = `${target.name.slice(1).replace('/', '-')}-${target.version}.tgz`;
+          appendFileSync(process.env.GITHUB_OUTPUT, `name=${target.name}\nversion=${target.version}\ntarball=${tarball}\n`);
+          NODE
+
+      - name: Verify package sources
+        run: |
+          npm install --global npm@11.17.0
+          npm ci
+          npm audit --audit-level=high
+          npm run lint
+          npm run check
+
+      - name: Pack and inspect target
+        env:
+          PACKAGE_NAME: ${{ steps.target.outputs.name }}
+          TARBALL_NAME: ${{ steps.target.outputs.tarball }}
+        run: |
+          mkdir -p .release-artifacts
+          npm pack --workspace "$PACKAGE_NAME" --ignore-scripts --pack-destination .release-artifacts
+          test -f ".release-artifacts/$TARBALL_NAME"
+          npm publish ".release-artifacts/$TARBALL_NAME" --dry-run --ignore-scripts --access public --tag latest
+
+      - name: Publish package with provenance
+        env:
+          TARBALL_NAME: ${{ steps.target.outputs.tarball }}
+        run: npm publish ".release-artifacts/$TARBALL_NAME" --ignore-scripts --access public --provenance --tag latest

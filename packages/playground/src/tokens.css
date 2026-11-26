@@ -1,0 +1,37 @@
+:root,
+:where([data-cm-theme='light'], [data-cm-theme='dark']) {
+  --vf-playground-height: var(--cm-breakpoint-xs, 480px);
+  --vf-playground-border-width: var(--cm-border-width, 1px);
+  --vf-playground-font-family: var(--cm-font-family-base);
+  --vf-playground-surface: var(--cm-color-background-surface);
+  --vf-playground-border: var(--cm-color-border-default);
+  --vf-playground-text: var(--cm-color-text-primary);
+  --vf-playground-tab-bg: var(--cm-color-background-surface-subtle);
+  --vf-playground-tab-text: var(--cm-color-text-primary);
+  --vf-playground-tab-border: var(--cm-color-border-default);
+  --vf-playground-tab-active-bg: transparent;
+  --vf-playground-tab-active-text: var(--cm-color-selected-foreground);
+  --vf-playground-tab-active-border: var(--cm-color-border-focus);
+  --vf-playground-console-bg: var(--cm-color-background-surface-subtle);
+  --vf-playground-console-text: var(--cm-color-text-primary);
+  --vf-playground-ssr-hint: var(--cm-color-text-secondary);
+  --vf-playground-iframe-bg: var(--cm-color-background-canvas);
+  --vf-playground-radius-lg: var(--cm-radius-overlay);
+  --vf-playground-bar-height: calc(var(--cm-control-height-md) + 3px);
+  --vf-playground-focus-ring-color: var(--cm-color-focus-ring);
+  --vf-playground-console-padding: var(--cm-space-4);
+  --vf-playground-console-font-size: var(--cm-text-label-font-size);
+  --vf-playground-console-line-height: var(--cm-text-body-line-height);
+  --vf-playground-component-padding: var(--cm-space-4);
+  --vf-playground-component-min-height: 100%;
+  --vf-playground-critical-preview-min-height: 220px;
+  --vf-playground-codeblock-margin-block: 0;
+  --vf-playground-codeblock-border-color: transparent;
+  --vf-playground-codeblock-border-radius: 0;
+  --vf-playground-codeblock-shadow: none;
+  --vf-playground-codeblock-max-height: 100%;
+  --vf-playground-codeblock-header-padding: 0 var(--cm-space-3);
+  --vf-playground-codeblock-meta-font-size: 0.875rem;
+  --vf-playground-codeblock-meta-color: var(--cm-color-text-secondary);
+  --vf-playground-codeblock-filename-font-weight: var(--cm-font-weight-medium);
+}
