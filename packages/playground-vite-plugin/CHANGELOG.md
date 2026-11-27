@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+
+- Publish from the matching GitHub release tag with npm provenance.
+
 ## 1.0.0
 
 - Publish `playgroundVirtualPlugin` under `@codemonster-ru/ui-playground-vite-plugin`.

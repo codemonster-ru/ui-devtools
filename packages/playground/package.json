@@ -1,6 +1,6 @@
 {
   "name": "@codemonster-ru/ui-playground",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vue 3 playground UI adapter for the CodeMonster playground core runtime.",
   "type": "module",
   "license": "MIT",
