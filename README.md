@@ -1,29 +1,37 @@
 # CodeMonster UI Devtools
 
-Standalone packages for Vue source highlighting and playgrounds. They follow a separate release
-cadence from the CodeMonster UI design-system packages.
+CodeMonster UI Devtools provides Vue code blocks with syntax highlighting and interactive
+playgrounds. These packages have their own releases and integrate with
+[CodeMonster UI](https://github.com/codemonster-ru/ui).
 
-| Package | Public entry | Responsibility |
+## Get started
+
+Use the [CodeBlock guide](packages/codeblock/README.md) to render highlighted code in Vue or
+highlight code without a Vue view. The [Playground guide](packages/playground/README.md) covers
+source tabs, previews, and the sandbox runtime. Both guides list their installation requirements,
+stylesheet imports, and server-rendering entry points.
+
+## Packages
+
+| Package | Public entry | Use |
 | --- | --- | --- |
-| `@codemonster-ru/ui-codeblock` | `/view`, `/highlight` | Vue code rendering, copy controls, and lazy Shiki highlighting in SSR and the browser |
-| `@codemonster-ru/ui-playground` | `/ui`, `/runtime` | Vue tabs, source and preview rendering, and browser session orchestration |
-| `@codemonster-ru/ui-playground-core` | root | Sandboxed browser execution, TypeScript worker, and preview messaging |
-| `@codemonster-ru/ui-playground-vite-plugin` | root | Vite virtual modules for configured local files |
+| [`@codemonster-ru/ui-codeblock`](packages/codeblock/README.md) | `/view`, `/highlight` | Vue code blocks, copy controls, and lazy Shiki highlighting |
+| [`@codemonster-ru/ui-playground`](packages/playground/README.md) | `/ui`, `/runtime` | Vue source tabs, previews, and browser sessions |
+| [`@codemonster-ru/ui-playground-core`](packages/playground-core/README.md) | Root | Sandboxed browser execution, the TypeScript worker, and preview messaging |
+| [`@codemonster-ru/ui-playground-vite-plugin`](packages/playground-vite-plugin/README.md) | Root | Vite virtual modules for configured local files |
 
-CodeBlock and the Playground UI use CodeMonster UI 2.0. Start with the
-[CodeBlock](packages/codeblock/README.md) and [Playground](packages/playground/README.md) package
-guides for the stylesheet and Vue SSR entry points. The Vue components keep the existing
-`VfCodeBlock` and `VfPlayground` names; their npm import paths change.
+CodeBlock and the Playground UI use CodeMonster UI 2.x. The Vue component names are
+`VfCodeBlock` and `VfPlayground`. See the [VueForge migration guide](https://github.com/codemonster-ru/ui/blob/main/docs/migrate-from-vueforge.md)
+for package and import changes.
 
-## Local verification
+## Development and support
 
-With Node.js 24.15+ and npm 11.17, run `npm ci` and `npm run check`. Until the CodeMonster UI
-2.0 dependencies are published, use verified local tarballs through a test registry that serves
-the required package names and versions.
+With Node.js 24.15 or later and npm 11.17, run `npm ci` and `npm run check` to build, type-check,
+and test the workspace. The [release workflow](.github/workflows/release-from-tag.yml) publishes
+from Git tags.
 
-Build and test before packing. Publish CodeMonster UI 2.0 first, then publish the CodeBlock and
-Playground Core packages before the Playground UI adapter. The Vite plugin has an independent
-publish order.
+Use [GitHub Issues](https://github.com/codemonster-ru/ui-devtools/issues) for questions and reproducible bugs.
+Follow the [contribution guide](./CONTRIBUTING.md) to propose changes.
+Report vulnerabilities through the [security policy](./SECURITY.md).
 
-The source and tests originated at `codemonster-ru/ui@d9879116` before the VueForge packages were
-archived. Those packages and their old npm versions are tracked in the archived VueForge project.
+Licensed under the [MIT License](LICENSE).
