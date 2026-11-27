@@ -1,6 +1,6 @@
 {
   "name": "@codemonster-ru/ui-playground-core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Framework-agnostic playground core runtime",
   "type": "module",
   "license": "MIT",

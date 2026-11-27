@@ -1,6 +1,6 @@
 {
   "name": "@codemonster-ru/ui-codeblock",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vue 3 code blocks with Shiki syntax highlighting and CodeMonster UI theming.",
   "license": "MIT",
   "author": "Kirill Kolesnikov",
